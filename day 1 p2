@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int toplam = 0;
+    int i;
+     FILE *file;
+     file = fopen("equation.txt" ,"r");
+     //input dosyası ismi ne ise "dosyaismi.txt","r"
+     int mass[100];
+    //ilk hafta verilen input dosyasında 100 tane sayı var ondan mass[100] kullandık.
+    for (i = 0; i <100; i++)
+    {
+        fscanf(file,"%d",&mass[i]);
+        //dosya içindeki her bir değeri okuması için fscanf
+       while(1==1)
+       {
+
+         if(mass[i]<0) break;
+
+        printf("\n %d Mass: %d Fuel: %d",(i+1),mass[i],(int)(mass[i])/3-2);
+       //(int)(mass[i])/3-2 problemde verilen formülün kendisi değişken atamak yerine direkt böyle kullandık.
+
+        if(((int)(mass[i])/3-2)>0)
+        {
+         //eksi değerleri toplama eklememesi için if komutu kullandık.
+         toplam += (int)(mass[i])/3-2;
+        }
+        mass[i] = (int)(mass[i])/3-2;
+        //islemler bittikten sonra yeni kütle arta kalan olduğu icin en sona bunu ekledik.
+       }
+
+    }
+    printf("\n toplam : %d",toplam);
+
+    fclose(file);
+    //dosya kapatma komutu.
+    return 0;
+}
